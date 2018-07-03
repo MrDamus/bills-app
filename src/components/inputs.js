@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormGroup, FormControl, ControlLabel, InputGroup } from 'react-bootstrap';
-import Calendar from 'react-input-calendar'
+import { connect } from 'react-redux';
+import { FormGroup, FormControl, ControlLabel, InputGroup, Button } from 'react-bootstrap';
+import { selectValue } from '../redux/actions';
+import { addTopup } from '../redux/actions/addTopup'
 
-const Inputs = ({ name, inputValue, selectValue }) => (
+
+const Inputs = ({ name, selectValue, amount, addTopup }) => (
   <FormGroup controlId={name} bsSize="large" style={{ display: 'flex', flexDirection: 'column', alignSelf: 'center' }}>
     <ControlLabel style={{textAlign: 'center'}}>{name} </ControlLabel>
     <InputGroup>
       {/* <FormGroup controlId="formControlsSelect"> */}
-      <ControlLabel>Select type</ControlLabel>
+      <ControlLabel>Select type </ControlLabel>
       <FormControl componentClass="select" placeholder="select">
         <option value="Electricity">Electricity</option>
         <option value="Gas">Gas</option>
@@ -18,23 +21,44 @@ const Inputs = ({ name, inputValue, selectValue }) => (
         style={{ width: '15%', minWidth:'100px', alignSelf: 'center', textAlign: 'center'}}
         autoFocus
         type="number"
-        placeholder="quantity"
+        placeholder="quantity"  
         min={0}
-        max={100000}
+        max={100}
         required
-        value='0'
+        value={amount}
         onChange={e => selectValue(e.target.value)}
       />
-    <Calendar format='DD/MM/YYYY' date='3-6-2018' />
+      <Button 
+        bsStyle="success"
+        block
+        type="submit"
+        onClick={addTopup}
+        >Confirm
+
+      </Button>
     </InputGroup>
   </FormGroup>
 );
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    selectValue: (user) => dispatch(selectValue(user)),
+  }
+}
+
+const mapStateToProps = ({ amountPicker }) => ({
+  amount: amountPicker.amount,
+})
 
 Inputs.propTypes = {
-  name: PropTypes.string.isRequired,
-  inputValue: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  selectValue: PropTypes.func,
 };
 
-export default Inputs;
+Inputs.defaultProps = {
+  amount: 0,
+  price: 0,
+  selectValue: () => null,
+  buyStock: () => null,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps) (Inputs);
