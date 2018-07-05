@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
-  amount: 0
+  amount: 0,
+  type: ' '
 }
 
 const amountPicker = (state = INITIAL_STATE, action) => {
@@ -8,6 +9,11 @@ const amountPicker = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         amount: action.payload
+      }
+    case 'SELECT_TYPE':
+      return {
+        ...state,
+        type: action.payload
       }
     default:
       return state
