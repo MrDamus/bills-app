@@ -7,7 +7,6 @@ import PickerActions from '../redux/actions';
 const Inputs = ({ name, selectValue, amount, addTopup, selectType }) => (
   <form onSubmit={event => event.preventDefault()} style={{display: 'flex', flexDirection: 'column'}}>
     <ControlLabel style={{textAlign: 'center', fontSize: '30px'}}>{name} </ControlLabel>
-    <InputGroup>
       {/* <FormGroup controlId="formControlsSelect"> */}
       <ControlLabel>Select type </ControlLabel>
       <FormControl
@@ -30,7 +29,6 @@ const Inputs = ({ name, selectValue, amount, addTopup, selectType }) => (
         value={amount}
         onChange={e => selectValue(e.target.value)}
       />
-    </InputGroup>
       <Button 
         bsStyle="success"
         block
