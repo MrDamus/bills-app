@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import GroupActions from '../redux/actions/addGroup';
+import GroupActions from '../redux/actions/group';
 
 import { FormControl, ControlLabel, Button } from 'react-bootstrap';
 
@@ -42,7 +42,7 @@ const mapDispatchToProps = (dispatch, { history }) => {
     changeAdminName: (adminName) => dispatch(GroupActions.changeAdminName(adminName)),
     changeGroupName: (inputValue) => dispatch(GroupActions.changeGroupName(inputValue)),
     createGroupRequest: () => dispatch(GroupActions.addGroup())
-      .then(() => history.push('/groupReference')),
+      .then(() => history.push('/groupCreated')),
   }
 }
 
