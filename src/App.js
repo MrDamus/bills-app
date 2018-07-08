@@ -4,9 +4,13 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import List from './components/list'
 import { db } from './firebase'
 import AddPayment from './pages/addPayment'
+import JoinGroup from './pages/joinGroup'
 import CreateGroup from './pages/createGroup'
 import Home from './pages/home'
 import NotFound from './components/notFound'
+import GroupCreated from './pages/groupCreated';
+import LandingPage from './pages/landing';
+import PendingPayments from './pages/pendingPayments';
 
 class App extends Component {
   constructor(props) {
@@ -30,10 +34,13 @@ class App extends Component {
         </header>
         <List items={[]}/>
         <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={LandingPage} />
         <Route path="/createGroup" component={CreateGroup} />
         <Route path="/home" component={Home} />
         <Route path="/addPayment" component={AddPayment} />
+        <Route path="/joinGroup" component={JoinGroup} />
+        <Route path="/groupCreated" component={GroupCreated} />
+        <Route path="/pendingPayments" component={PendingPayments} />
         <Route component={NotFound} />
       </Switch>
       </div>

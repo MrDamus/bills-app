@@ -21,7 +21,7 @@ export function addGroup() {
     return db.createGroup(groupName, referenceCode)
     .then(resp => db.createUser(adminName, resp.id))
     .then(resp => {
-      dispatch(addGroupSuccess(resp));
+      dispatch(addGroupSuccess({resp, referenceCode}));
     },
       error => {
         dispatch(addGroupError(error))
@@ -29,6 +29,12 @@ export function addGroup() {
       }
     );
   };
+}
+
+export function joinGroup() {
+  return function(dispatch, getState) {
+    dispatch(() => ({type: 'JOIN_GROUP'}))
+  }
 }
 
 export const addGroupSuccess = (payload) => ({
