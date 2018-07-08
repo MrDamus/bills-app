@@ -4,21 +4,25 @@ import PropTypes from 'prop-types';
 
 import { FormControl, ControlLabel, Button } from 'react-bootstrap';
 
-const welcomeTo = ({ changeGroupName, welcomeToRequest }) => (
+const welcomeTo = ({ groupName, history }) => (
   <div>
-    {/* ${groupName} */}
+    Welcome To Group : {groupName}
+    <Button
+      bsStyle="success"
+      block
+      style={{maxWidth: '300px', alignSelf: 'center', marginTop: '10px'}}
+      type="submit"
+      onClick={() => history.push('/home')}
+      >Go to home page
+    </Button>
   </div>
 );
 
-const mapDispatchToProps = (dispatch, { history }) => {
-  return {
-  //   changeGroupName: (inputValue) => dispatch(GroupActions.changeGroupName(inputValue)),
-  //   welcomeToRequest: () => dispatch(GroupActions.addGroup())
-  //     .then(() => history.push('/groupReference')),
-  }
-}
+const mapStateToProps = ({ group }) => ({
+  groupName: group.groupName,
+})
 
 welcomeTo.propTypes = {
 };
 
-export default connect(null, mapDispatchToProps)(welcomeTo);
+export default connect(mapStateToProps)(welcomeTo);

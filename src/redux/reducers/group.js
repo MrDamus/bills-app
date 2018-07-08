@@ -1,8 +1,9 @@
 const INITIAL_STATE = {
   groupName: '',
-  adminName: '',
+  userName: '',
   isInProgress: false,
   referenceCode: '',
+  groupReferenceCode: ''
 }
 
 const addGroup = (state = INITIAL_STATE, action) => {
@@ -12,10 +13,10 @@ const addGroup = (state = INITIAL_STATE, action) => {
         ...state,
         groupName: action.payload,
       }
-      case 'CHANGE_ADMIN_NAME':
+      case 'CHANGE_USER_NAME':
       return {
         ...state,
-        adminName: action.payload,
+        userName: action.payload,
       }
       case 'ADD_GROUP':
       return {
@@ -29,6 +30,27 @@ const addGroup = (state = INITIAL_STATE, action) => {
         referenceCode: action.payload.referenceCode,
       }
       case 'ADD_GROUP_ERROR':
+      return {
+        ...state,
+        isInProgress: false,
+      }
+      case 'CHANGE_GROUP_REFERENCE':
+      return {
+        ...state,
+        groupReferenceCode: action.payload,
+      }
+      case 'JOIN_GROUP':
+      return {
+        ...state,
+        isInProgress: true,
+      }
+      case 'JOIN_GROUP_SUCCESS':
+      return {
+        ...state,
+        isInProgress: false,
+        groupName: action.payload.name,
+      }
+      case 'JOIN_GROUP_ERROR':
       return {
         ...state,
         isInProgress: false,
