@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import Inputs from './components/inputs'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import List from './components/list'
+import { db } from './firebase'
+import AddPayment from './pages/addPayment'
+import CreateGroup from './pages/createGroup'
+import NotFound from './components/notFound'
 
 class App extends Component {
   constructor(props) {
@@ -13,18 +17,24 @@ class App extends Component {
 
   componentDidMount() {
     // const { getBills } = this.props;
-
+    db.onceGetUsers().then(users => console.log(users.docs[0].data()))
   }
 
   render() {
     return (
-      <div className="App">
+      <Router >
+        <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to bills application</h1>
         </header>
-        <Inputs name={'Add top up'}/>
         <List items={[]}/>
+        <Switch>
+        <Route exact path="/" component={AddPayment} />
+        <Route path="/createGroup" component={CreateGroup} />
+        <Route component={NotFound} />
+      </Switch>
       </div>
+    </Router>
     );
   }
 }

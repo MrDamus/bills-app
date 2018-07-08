@@ -4,16 +4,16 @@ import { connect } from 'react-redux';
 import { FormControl, ControlLabel, InputGroup, Button } from 'react-bootstrap';
 import PickerActions from '../redux/actions';
 
-const Inputs = ({ name, selectValue, amount, addTopup, selectType }) => (
+const Inputs = ({ selectValue, amount, addTopup, selectType }) => (
   <form onSubmit={event => event.preventDefault()} style={{display: 'flex', flexDirection: 'column'}}>
-    <ControlLabel style={{textAlign: 'center', fontSize: '30px'}}>{name} </ControlLabel>
-    <InputGroup>
+    <ControlLabel style={{textAlign: 'center', fontSize: '30px'}}>{'Add top up'}</ControlLabel>
       {/* <FormGroup controlId="formControlsSelect"> */}
       <ControlLabel>Select type </ControlLabel>
       <FormControl
         componentClass="select"
         placeholder="select"
         onChange={e => selectType(e.target.value)}
+        style={{alignSelf: 'center'}}
       >
         <option value="Electricity">Electricity</option>
         <option value="Gas">Gas</option>
@@ -30,7 +30,6 @@ const Inputs = ({ name, selectValue, amount, addTopup, selectType }) => (
         value={amount}
         onChange={e => selectValue(e.target.value)}
       />
-    </InputGroup>
       <Button 
         bsStyle="success"
         block
