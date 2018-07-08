@@ -7,6 +7,7 @@ import AddPayment from './pages/addPayment'
 import JoinGroup from './pages/joinGroup'
 import CreateGroup from './pages/createGroup'
 import Home from './pages/home'
+import Welcome from './pages/welcomeTo'
 import NotFound from './components/notFound'
 import GroupCreated from './pages/groupCreated';
 import LandingPage from './pages/landing';
@@ -40,6 +41,7 @@ class App extends Component {
         <Route path="/addPayment" component={AddPayment} />
         <Route path="/joinGroup" component={JoinGroup} />
         <Route path="/groupCreated" component={GroupCreated} />
+        <Route path="/welcome" component={Welcome} />
         <Route path="/pendingPayments" component={PendingPayments} />
         <Route component={NotFound} />
       </Switch>
