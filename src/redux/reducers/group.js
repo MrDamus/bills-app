@@ -2,6 +2,7 @@ const INITIAL_STATE = {
   groupName: '',
   adminName: '',
   isInProgress: false,
+  referenceCode: '',
 }
 
 const addGroup = (state = INITIAL_STATE, action) => {
@@ -25,6 +26,7 @@ const addGroup = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isInProgress: false,
+        referenceCode: action.payload.referenceCode,
       }
       case 'ADD_GROUP_ERROR':
       return {
