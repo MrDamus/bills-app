@@ -1,22 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { FormControl, ControlLabel, InputGroup, Button } from 'react-bootstrap';
+import GroupActions from '../redux/actions/addGroup';
 
+import { FormControl, ControlLabel, Button } from 'react-bootstrap';
 
-const createGroup = ({ user }) => (
+const createGroup = ({ changeAdminName, changeGroupName, createGroupRequest}) => (
   <form onSubmit={event => event.preventDefault()} style={{display: 'flex', flexDirection: 'column'}}>
-  <ControlLabel style={{textAlign: 'center', fontSize: '30px'}}>{'Add top up'}</ControlLabel>
+  <ControlLabel style={{textAlign: 'center', fontSize: '30px'}}>{'Create group'}</ControlLabel>
     {/* <FormGroup controlId="formControlsSelect"> */}
-    <ControlLabel>Select type </ControlLabel>
     <FormControl
       style={{ width: '15%', minWidth:'100px', alignSelf: 'center', textAlign: 'center'}}
       autoFocus
       type="text"
-      placeholder="Username"
+      placeholder="Admin name"
       required
-      value={''}
-      // onChange={e => changeUsername(e.target.value)}
+      onChange={e => changeAdminName(e.target.value)}
     />
   {/* </FormGroup> */}
     <FormControl
@@ -25,24 +24,29 @@ const createGroup = ({ user }) => (
       type="text"
       placeholder="Group name"  
       required
-      value={'amount'}
-      // onChange={e => selectValue(e.target.value)}
+      onChange={e => changeGroupName(e.target.value)}
     />
     <Button 
       bsStyle="success"
       block
       style={{maxWidth: '300px', alignSelf: 'center', marginTop: '10px'}}
       type="submit"
-      // onClick={addTopup}
+      onClick={createGroupRequest}
       >Confirm
     </Button>
 </form>
 );
 
-const mapStateToProps = ({  }) => ({
-})
+const mapDispatchToProps = (dispatch, { history }) => {
+  return {
+    changeAdminName: (adminName) => dispatch(GroupActions.changeAdminName(adminName)),
+    changeGroupName: (inputValue) => dispatch(GroupActions.changeGroupName(inputValue)),
+    createGroupRequest: () => dispatch(GroupActions.addGroup())
+      .then(() => history.push('/groupReference')),
+  }
+}
 
 createGroup.propTypes = {
 };
 
-export default connect(mapStateToProps)(createGroup);
+export default connect(null, mapDispatchToProps)(createGroup);
