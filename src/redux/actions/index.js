@@ -10,11 +10,6 @@ export const selectType = (payload) => ({
   payload
 })
 
-export const addTopup = (payload) => ({
-  type: 'ADD_TOPUP',
-  payload
-})
-
 export function addPayment() {
   return function(dispatch, getState) {
     dispatch(() => ({type: 'JOIN_GROUP'}));
@@ -44,7 +39,6 @@ export const addPaymentError = (payload) => ({
 
 export default {
   selectValue,
-  addTopup,
   selectType,
   addPayment
 }

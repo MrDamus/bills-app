@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { FormControl, ControlLabel, InputGroup, Button } from 'react-bootstrap';
 import PaymentActions from '../redux/actions';
 
-const Inputs = ({ selectValue, amount, addTopup, selectType }) => (
+const Inputs = ({ selectValue, amount, addPayment, selectType }) => (
   <form onSubmit={event => event.preventDefault()} style={{display: 'flex', flexDirection: 'column'}}>
     <ControlLabel style={{textAlign: 'center', fontSize: '30px'}}>{'Add top up'}</ControlLabel>
       <ControlLabel>Select type </ControlLabel>
@@ -33,7 +33,7 @@ const Inputs = ({ selectValue, amount, addTopup, selectType }) => (
         block
         style={{maxWidth: '300px', alignSelf: 'center', marginTop: '10px'}}
         type="submit"
-        onClick={addTopup}
+        onClick={addPayment}
         >Confirm
       </Button>
   </form>
@@ -43,7 +43,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     selectValue: (inputValue) => dispatch(PaymentActions.selectValue(inputValue)),
     selectType: (inputType) => dispatch(PaymentActions.selectType(inputType)),
-    addTopup: () => dispatch(PaymentActions.addTopup()),
+    addPayment: () => dispatch(PaymentActions.addPayment()),
   }
 }
 
