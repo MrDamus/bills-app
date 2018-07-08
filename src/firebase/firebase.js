@@ -8,7 +8,7 @@ if (!firebase.apps.length) {
   firebase.initializeApp(config);
   firebase.auth().signInAnonymously()
   .then(() => {
-    console.warn('User registered')
+    console.warn('Anonymous User registered')
   })
   .catch(error => {
     console.warn(error);

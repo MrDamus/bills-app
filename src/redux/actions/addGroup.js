@@ -1,16 +1,7 @@
 // nazwa, zmiana nazwy grupy, zmiana nazwy admina, submit , submit group erorr i success
 
-import createGroup from "../services/createGroup";
-
-export const groupName = (payload) => ({
-  type: 'GROUP_NAME',
-  payload
-})
-
-export const adminName = (payload) => ({
-  type: 'ADMIN_NAME',
-  payload
-})
+import GroupService from "../services/groupService";
+import { db } from '../../firebase';
 
 export const changeGroupName = (payload) => ({
   type: 'CHANGE_GROUP_NAME',
@@ -21,10 +12,24 @@ export const changeAdminName = (payload) => ({
   type: 'CHANGE_ADMIN_NAME',
   payload
 })
-export const addGroup = (payload) => ({
-  type: 'ADD_GROUP',
-  payload
-})
+
+export function addGroup() {
+  return function (dispatch, getState) {
+    dispatch(() => ({type: 'ADD_GROUP'}))
+    const { groupName, adminName }  = getState().group;
+    const referenceCode = Math.random().toString(36).slice(6);
+    return db.createGroup(groupName, referenceCode)
+    .then(resp => db.createUser(adminName, resp.id))
+    .then(resp => {
+      dispatch(addGroupSuccess(resp));
+    },
+      error => {
+        dispatch(addGroupError(error))
+        throw new Error(error)
+      }
+    );
+  };
+}
 
 export const addGroupSuccess = (payload) => ({
   type: 'ADD_GROUP_SUCCESS',
@@ -35,3 +40,10 @@ export const addGroupError = (payload) => ({
   type: 'ADD_GROUP_ERROR',
   payload
 })
+
+export default {
+  changeGroupName,
+  changeAdminName,
+  addGroup,
+  addGroupSuccess
+}
