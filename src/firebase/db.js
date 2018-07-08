@@ -2,10 +2,16 @@ import { db } from './firebase';
 
 // User API
 
-export const doCreateUser = (username, email) =>
+export const createGroup = (name, referenceCode) =>
+  db.collection(`groups`).add({
+    name,
+    referenceCode,
+  });
+
+  export const createUser = (name, groupId) =>
   db.collection(`users`).add({
-    username,
-    email,
+    name,
+    groupId,
   });
 
 export const onceGetUsers = () =>
