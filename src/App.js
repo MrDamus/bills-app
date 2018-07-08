@@ -5,6 +5,7 @@ import List from './components/list'
 import { db } from './firebase'
 import AddPayment from './pages/addPayment'
 import CreateGroup from './pages/createGroup'
+import Home from './pages/home'
 import NotFound from './components/notFound'
 
 class App extends Component {
@@ -29,8 +30,10 @@ class App extends Component {
         </header>
         <List items={[]}/>
         <Switch>
-        <Route exact path="/" component={AddPayment} />
+        <Route exact path="/" component={Home} />
         <Route path="/createGroup" component={CreateGroup} />
+        <Route path="/home" component={Home} />
+        <Route path="/addPayment" component={AddPayment} />
         <Route component={NotFound} />
       </Switch>
       </div>
