@@ -1,10 +1,7 @@
+import { db } from '../../firebase';
+
 export const selectValue = (payload) => ({
   type: 'SELECT_VALUE',
-  payload
-})
-
-export const addTopup = (payload) => ({
-  type: 'ADD_TOPUP',
   payload
 })
 
@@ -13,8 +10,41 @@ export const selectType = (payload) => ({
   payload
 })
 
+export const addTopup = (payload) => ({
+  type: 'ADD_TOPUP',
+  payload
+})
+
+export function addPayment() {
+  return function(dispatch, getState) {
+    dispatch(() => ({type: 'JOIN_GROUP'}));
+    const { amount, type } = getState().amountPicker;
+    const { userId } = getState().user;
+    return db.addPayment(amount, type, userId)
+    .then(data => {
+      dispatch(addPaymentSuccess(data));
+    },
+      error => {
+        dispatch(addPaymentError(error))
+        throw new Error(error)
+      }
+    );
+  }
+}
+
+export const addPaymentSuccess = (payload) => ({
+  type: 'ADD_PAYMENT_SUCCESS',
+  payload
+})
+
+export const addPaymentError = (payload) => ({
+  type: 'ADD_PAYMENT_ERROR',
+  payload
+})
+
 export default {
   selectValue,
   addTopup,
-  selectType
+  selectType,
+  addPayment
 }

@@ -1,4 +1,5 @@
 import GroupService from "../services/groupService";
+import UserActions from './user';
 import { db } from '../../firebase';
 
 export const changeGroupName = (payload) => ({
@@ -18,8 +19,9 @@ export function addGroup() {
     const referenceCode = Math.random().toString(36).slice(6);
     return db.createGroup(groupName, referenceCode)
     .then(resp => db.createUser(userName, resp.id))
-    .then(resp => {
-      dispatch(addGroupSuccess({resp, referenceCode}));
+    .then(user => dispatch(UserActions.setUser(user.id)))
+    .then(() => {
+      dispatch(addGroupSuccess({referenceCode}));
     },
       error => {
         dispatch(addGroupError(error))
@@ -36,6 +38,10 @@ export function joinGroup() {
     return db.getGroup(groupReferenceCode)
     .then(resp => {
       db.createUser(userName, resp.id)
+        .then(user => {
+          console.warn(user)
+          dispatch(UserActions.setUser(user.id))
+        })
       return resp.data()
     })
     .then(data => {
@@ -54,13 +60,13 @@ export const addGroupSuccess = (payload) => ({
   payload
 })
 
-export const changeGroupReference = (payload) => ({
-  type: 'CHANGE_GROUP_REFERENCE',
+export const addGroupError = (payload) => ({
+  type: 'ADD_GROUP_ERROR',
   payload
 })
 
-export const addGroupError = (payload) => ({
-  type: 'ADD_GROUP_ERROR',
+export const changeGroupReference = (payload) => ({
+  type: 'CHANGE_GROUP_REFERENCE',
   payload
 })
 
