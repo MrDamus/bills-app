@@ -23,4 +23,9 @@ export const getGroup = (code) =>
 export const onceGetUsers = () =>
   db.collection('users').get();
 
-  export const addPayment = (value, type) => true
+export const addPayment = (amount, type, requestorId) =>
+  db.collection(`payments`).add({
+    amount,
+    type,
+    requestorId,
+  });
