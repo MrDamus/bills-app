@@ -5,19 +5,17 @@ import GroupActions from '../redux/actions/group';
 
 import { FormControl, ControlLabel, Button } from 'react-bootstrap';
 
-const createGroup = ({ changeAdminName, changeGroupName, createGroupRequest}) => (
+const createGroup = ({ changeUserName, changeGroupName, createGroupRequest}) => (
   <form onSubmit={event => event.preventDefault()} style={{display: 'flex', flexDirection: 'column'}}>
   <ControlLabel style={{textAlign: 'center', fontSize: '30px'}}>{'Create group'}</ControlLabel>
-    {/* <FormGroup controlId="formControlsSelect"> */}
     <FormControl
       style={{ width: '15%', minWidth:'100px', alignSelf: 'center', textAlign: 'center'}}
       autoFocus
       type="text"
       placeholder="Admin name"
       required
-      onChange={e => changeAdminName(e.target.value)}
+      onChange={e => changeUserName(e.target.value)}
     />
-  {/* </FormGroup> */}
     <FormControl
       style={{ width: '15%', minWidth:'100px', alignSelf: 'center', textAlign: 'center'}}
       autoFocus
@@ -39,14 +37,16 @@ const createGroup = ({ changeAdminName, changeGroupName, createGroupRequest}) =>
 
 const mapDispatchToProps = (dispatch, { history }) => {
   return {
-    changeAdminName: (adminName) => dispatch(GroupActions.changeAdminName(adminName)),
+    changeUserName: (name) => dispatch(GroupActions.changeUserName(name)),
     changeGroupName: (inputValue) => dispatch(GroupActions.changeGroupName(inputValue)),
     createGroupRequest: () => dispatch(GroupActions.addGroup())
-      .then(() => history.push('/groupCreated')),
+      .then(() => history.push('/groupCreated'))
+      .catch(e => console.warn(e)),
   }
 }
 
 createGroup.propTypes = {
+  changeUserName: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(createGroup);
