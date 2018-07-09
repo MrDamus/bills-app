@@ -9,13 +9,15 @@ class AppHeader extends Component {
 componentDidMount() {
   if (!this.props.userId) {
     const userId = localStorage.getItem('userId');
-    if (typeof userId === 'string') {
+    if (userId && typeof userId === 'string') {
       try {
         this.props.setUser(userId)
         this.props.history.push('/home')
       } catch (err) {
         console.log(err)
       }
+    } else {
+      this.props.history.push('/')
     }
   }
 }
@@ -40,6 +42,12 @@ const mapDispatchToProps = (dispatch, { history }) => {
 
 AppHeader.propTypes = {
   title: PropTypes.string.isRequired,
+  setUser: PropTypes.func,
+  history: PropTypes.object,
 };
+
+AppHeader.defaultProps = {
+  setUser: () => null,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AppHeader));
