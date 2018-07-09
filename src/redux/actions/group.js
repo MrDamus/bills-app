@@ -14,7 +14,7 @@ export const changeUserName = (payload) => ({
 
 export function addGroup() {
   return function (dispatch, getState) {
-    dispatch(() => ({type: 'ADD_GROUP'}))
+    dispatch(({type: 'ADD_GROUP'}))
     const { groupName, userName }  = getState().group;
     const referenceCode = Math.random().toString(36).slice(6);
     return db.createGroup(groupName, referenceCode)
@@ -33,13 +33,12 @@ export function addGroup() {
 
 export function joinGroup() {
   return function(dispatch, getState) {
-    dispatch(() => ({type: 'JOIN_GROUP'}));
+    dispatch(({type: 'JOIN_GROUP'}));
     const { groupReferenceCode, userName }  = getState().group;
     return db.getGroup(groupReferenceCode)
     .then(resp => {
       db.createUser(userName, resp.id)
         .then(user => {
-          console.warn(user)
           dispatch(UserActions.setUser(user.id))
         })
       return resp.data()

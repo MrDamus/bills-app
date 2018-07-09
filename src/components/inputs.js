@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormControl, ControlLabel, InputGroup, Button } from 'react-bootstrap';
+import { FormControl, ControlLabel, Button } from 'react-bootstrap';
 import PaymentActions from '../redux/actions';
 
 const Inputs = ({ selectValue, amount, addPayment, selectType }) => (
@@ -34,7 +34,7 @@ const Inputs = ({ selectValue, amount, addPayment, selectType }) => (
         style={{maxWidth: '300px', alignSelf: 'center', marginTop: '10px'}}
         type="submit"
         onClick={addPayment}
-        >Confirm
+        >Add payment
       </Button>
   </form>
 );
@@ -53,11 +53,17 @@ const mapStateToProps = ({ amountPicker }) => ({
 
 Inputs.propTypes = {
   selectValue: PropTypes.func,
+  selectType: PropTypes.func,
+  amount: PropTypes.number,
+  addPayment: PropTypes.func,
+
 };
 
 Inputs.defaultProps = {
-  amount: 0,
   selectValue: () => null,
+  selectType: () => null,
+  addPayment: () => null,
+  amount: 1,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps) (Inputs);

@@ -47,6 +47,7 @@ const mapDispatchToProps = (dispatch, { history }) => {
 
 createGroup.propTypes = {
   changeUserName: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(createGroup);

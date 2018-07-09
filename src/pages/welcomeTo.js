@@ -23,6 +23,8 @@ const mapStateToProps = ({ group }) => ({
 })
 
 welcomeTo.propTypes = {
+  history: PropTypes.object.isRequired,
+  groupName: PropTypes.string,
 };
 
 export default connect(mapStateToProps)(welcomeTo);

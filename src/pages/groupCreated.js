@@ -33,6 +33,7 @@ const mapDispatchToProps = (dispatch, { history }) => {
 }
 
 groupCreated.propTypes = {
+  history: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(groupCreated);
