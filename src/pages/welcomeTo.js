@@ -23,6 +23,7 @@ const mapStateToProps = ({ group }) => ({
 })
 
 welcomeTo.propTypes = {
+  history: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps)(welcomeTo);

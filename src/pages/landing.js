@@ -27,6 +27,7 @@ const LandingPage = ({ user, history }) => (
 
 
 LandingPage.propTypes = {
+  history: PropTypes.object.isRequired,
 };
 
 export default LandingPage;

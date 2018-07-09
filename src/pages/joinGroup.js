@@ -49,6 +49,7 @@ const mapDispatchToProps = (dispatch, { history }) => {
 }
 
 joinGroup.propTypes = {
+  history: PropTypes.object.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(joinGroup);
