@@ -11,9 +11,7 @@ import GroupCreated from './pages/groupCreated';
 import PendingPayments from './pages/pendingPayments';
 import NotFound from './components/notFound'
 import List from './components/list'
-import { connect } from 'react-redux';
 import { db } from './firebase'
-import appHeader from './components/appHeader'
 import AppHeader from './components/appHeader';
 
 class App extends Component {
