@@ -1,5 +1,7 @@
 const INITIAL_STATE = {
   userId: '',
+  userPayments: [],
+  groupPayments: []
 }
 
 const setUser = (state = INITIAL_STATE, action) => {
