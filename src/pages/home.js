@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ControlLabel, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import PaymentActions from '../redux/actions';
+import PaymentActions from '../redux/actions/payments';
 
 const Home = ({ history, fetchPayments }) => (
   <form onSubmit={event => event.preventDefault()} style={{display: 'flex', flexDirection: 'column'}}>

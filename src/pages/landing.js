@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ControlLabel, Button } from 'react-bootstrap';
 
-
-const LandingPage = ({ user, history }) => (
+const LandingPage = ({ history }) => (
   <form onSubmit={event => event.preventDefault()} style={{display: 'flex', flexDirection: 'column'}}>
   <ControlLabel style={{textAlign: 'center', fontSize: '30px'}}>{'Choose your destiny:'}</ControlLabel>
     <Button 
@@ -24,7 +23,6 @@ const LandingPage = ({ user, history }) => (
     </Button>
 </form>
 );
-
 
 LandingPage.propTypes = {
   history: PropTypes.object.isRequired,

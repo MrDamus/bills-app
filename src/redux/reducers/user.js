@@ -11,6 +11,11 @@ const setUser = (state = INITIAL_STATE, action) => {
         ...state,
         userId: action.payload,
       }
+      case 'FETCH_USER_PAYMENTS_SUCCESS':
+      return {
+        ...state,
+        userPayments: action.payload,
+      }
       default:
         return state
     }

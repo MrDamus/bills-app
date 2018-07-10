@@ -3,16 +3,19 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Inputs from '../components/inputs'
 
-const addPayment = ({ user }) => (
-      <Inputs/>
-    );
+const addPayment = ({ message }) => (
+  <div>
+    <Inputs/>
+    <p key="message">{message}</p>
+  </div>
+);
 
-const mapStateToProps = ({ userData }) => ({
-  // user: userData.user,
+const mapStateToProps = ({ transaction }) => ({
+  message: transaction.message,
 })
 
 addPayment.propTypes = {
-  // user: PropTypes.object.isRequired
+  message: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps)(addPayment);
