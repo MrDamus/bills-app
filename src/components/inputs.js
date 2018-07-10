@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormControl, ControlLabel, Button } from 'react-bootstrap';
-import PaymentActions from '../redux/actions';
+import TransactionActions from '../redux/actions/newTransaction';
+import PaymentActions from '../redux/actions/payments';
 
 const Inputs = ({ selectValue, amount, addPayment, selectType }) => (
   <form onSubmit={event => event.preventDefault()} style={{display: 'flex', flexDirection: 'column'}}>
@@ -41,8 +42,8 @@ const Inputs = ({ selectValue, amount, addPayment, selectType }) => (
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectValue: (inputValue) => dispatch(PaymentActions.selectValue(inputValue)),
-    selectType: (inputType) => dispatch(PaymentActions.selectType(inputType)),
+    selectValue: (inputValue) => dispatch(TransactionActions.selectValue(inputValue)),
+    selectType: (inputType) => dispatch(TransactionActions.selectType(inputType)),
     addPayment: () => dispatch(PaymentActions.addPayment()),
   }
 }
