@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Inputs from '../components/inputs'
-import transaction from '../redux/reducers/transaction';
 
 const addPayment = ({ message }) => (
   <div>

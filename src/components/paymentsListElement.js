@@ -1,17 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import moment from 'moment';
 
-const PaymentsListElement = ({ data }) => (
-  <div key={data.date} style={{ display: "flex", justifyContent: "space-around" }}>
+const PaymentsListElement = ({ paymentDetails }) => (
+  <div
+    style={{ display: "flex", justifyContent: "" }}>
       {`
-        your payment
+        Payment:  ${paymentDetails.type}, ${paymentDetails.amount}£, 
       `}
   </div>
 )
 
+const mapStateToProps = ({ user }) => ({
+  amount: user.amount,
+})
+
 PaymentsListElement.propTypes = {
-  data: PropTypes.object.isRequired
+  paymentDetails: PropTypes.object.isRequired,
 }
 
-export default PaymentsListElement;
+export default connect(mapStateToProps)(PaymentsListElement);

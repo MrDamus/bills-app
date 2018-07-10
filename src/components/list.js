@@ -1,21 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PaymentsListElement from './paymentsListElement'
+import { connect } from 'react-redux';
 
-const List = ({ data }) => (
+const List = ({ userPayments, payment }) => (
   <div className="paymentsList" style={{ display: "flex", flexDirection: "column" }}>
     <h3 style={{ alignSelf: 'center' }}>Payments History</h3>
     <ul style={{ display: "flex", flexDirection: "column" }}>
-      {data
-        ? data.map(payment => <PaymentsListElement key={data.date} data={payment} />)
+      {userPayments
+        ? userPayments.map((payment, i) => <PaymentsListElement key={i} paymentDetails={payment} />)
         : null
       }
     </ul>
   </div>
 );
 
+const mapStateToProps = ({ transaction, user }) => ({
+  payment: transaction.payment,
+  userPayments: user.userPayments
+})
+
 List.propTypes = {
-  data: PropTypes.array
+  userPayments: PropTypes.array
 };
 
-export default List;
+export default connect(mapStateToProps)(List);

@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
-import { FormControl, ControlLabel, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 const welcomeTo = ({ groupName, history }) => (
   <div>
