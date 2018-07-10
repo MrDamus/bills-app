@@ -4,21 +4,25 @@ import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import PaymentActions from '../redux/actions/payments';
 
-const PaymentsListElement = ({ paymentDetails, approvePayment }) => (
+const PaymentsListElement = ({ paymentDetails, approvePayment, userId }) => (
   <div
     style={{ display: "flex", justifyContent: "center", flexDirection: '' }}>
       {`
         Payment:  ${paymentDetails.type}, ${paymentDetails.amount}£  
       `}
       <p>ID: {paymentDetails.requestorId}</p>
-      <Button
-        bsStyle="success"
-        block
-        style={{maxWidth: '300px'}}
-        type="submit"
-        onClick={approvePayment}
-        >Approve payment
-      </Button>  
+      { paymentDetails.requestorId == userId 
+      ? <p> Pending</p> 
+      : (
+        <Button
+          bsStyle="success"
+          block
+          style={{maxWidth: '300px'}}
+          type="submit"
+          onClick={approvePayment}
+          >Approve payment
+        </Button>)
+    } 
     </div>
 )
 
@@ -30,7 +34,7 @@ const mapDispatchToProps = (dispatch, { history }) => {
 }
 
 const mapStateToProps = ({ user }) => ({
-  amount: user.amount,
+  userId: user.userId,
 })
 
 PaymentsListElement.propTypes = {
