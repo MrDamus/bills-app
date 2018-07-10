@@ -31,9 +31,9 @@ export function fetchUserPayments() {
   return function(dispatch, getState) {
     dispatch(({type: 'FETCH_USER_PAYMENTS'}));
     const { userId } = getState().user;
-    return db.fetchUserPayments(userId)
+    return db.fetchGroupPayments(userId)
     .then(data => {
-      dispatch(fetchUserPaymentsSuccess(data.docs.map(d => d.data())));
+      dispatch(fetchUserPaymentsSuccess(data));
     },
       error => {
         dispatch(fetchUserPaymentsError(error))
@@ -53,7 +53,34 @@ export const fetchUserPaymentsError = (payload) => ({
   payload
 })
 
+// export function approvePayment() {
+//   return function(dispatch, getState) {
+//     dispatch(({type: 'APPROVE_PAYMENT'}));
+//     const { userId } = getState().user;
+//     return db.approvePayment(userId)
+//     .then(data => {
+//       dispatch(approvePaymentSuccess(data.docs.map(d => d.data())));
+//     },
+//       error => {
+//         dispatch(approvePaymentError(error))
+//         throw new Error(error)
+//       }
+//     );
+//   }
+// }
+
+// export const approvePaymentSuccess = (payload) => ({
+//   type: 'APPROVE_PAYMENT_SUCCESS',
+//   payload
+// })
+
+// export const approvePaymentError = (payload) => ({
+//   type: 'APPROVE_PAYMENT_ERROR',
+//   payload
+// })
+
 export default {
   addPayment,
   fetchUserPayments,
+  // approvePayment
 }
