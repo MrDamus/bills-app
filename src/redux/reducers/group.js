@@ -55,6 +55,11 @@ const addGroup = (state = INITIAL_STATE, action) => {
         ...state,
         isInProgress: false,
       }
+      case 'FETCH_GROUP_PAYMENTS_SUCCESS':
+      return {
+        ...state,
+        groupPayments: action.payload,
+      }
       default:
         return state
     }

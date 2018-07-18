@@ -53,34 +53,61 @@ export const fetchUserPaymentsError = (payload) => ({
   payload
 })
 
-// export function approvePayment() {
-//   return function(dispatch, getState) {
-//     dispatch(({type: 'APPROVE_PAYMENT'}));
-//     const { userId } = getState().user;
-//     return db.approvePayment(userId)
-//     .then(data => {
-//       dispatch(approvePaymentSuccess(data.docs.map(d => d.data())));
-//     },
-//       error => {
-//         dispatch(approvePaymentError(error))
-//         throw new Error(error)
-//       }
-//     );
-//   }
-// }
+export function fetchGroupPayments() {
+  return function(dispatch, getState) {
+    dispatch(({type: 'FETCH_GROUP_PAYMENTS'}));
+    const { groupId } = getState().group;
+    return db.fetchGroupPayments(groupId)
+    .then(data => {
+      dispatch(fetchGroupPaymentsSuccess(data));
+    },
+      error => {
+        dispatch(fetchGroupPaymentsError(error))
+        throw new Error(error)
+      }
+    );
+  }
+}
 
-// export const approvePaymentSuccess = (payload) => ({
-//   type: 'APPROVE_PAYMENT_SUCCESS',
-//   payload
-// })
+export const fetchGroupPaymentsSuccess = (payload) => ({
+  type: 'FETCH_GROUP_PAYMENTS_SUCCESS',
+  payload
+})
 
-// export const approvePaymentError = (payload) => ({
-//   type: 'APPROVE_PAYMENT_ERROR',
-//   payload
-// })
+export const fetchGroupPaymentsError = (payload) => ({
+  type: 'FETCH_GROUP_PAYMENTS_ERROR',
+  payload
+})
+
+export function approvePayment() {
+  return function(dispatch, getState) {
+    dispatch(({type: 'APPROVE_PAYMENT'}));
+    const { userId } = getState().user;
+    return db.approvePayment(userId)
+    .then(data => {
+      dispatch(approvePaymentSuccess(data));
+    },
+      error => {
+        dispatch(approvePaymentError(error))
+        throw new Error(error)
+      }
+    );
+  }
+}
+
+export const approvePaymentSuccess = (payload) => ({
+  type: 'APPROVE_PAYMENT_SUCCESS',
+  payload
+})
+
+export const approvePaymentError = (payload) => ({
+  type: 'APPROVE_PAYMENT_ERROR',
+  payload
+})
 
 export default {
   addPayment,
   fetchUserPayments,
-  // approvePayment
+  fetchGroupPayments,
+  approvePayment
 }
