@@ -11,7 +11,7 @@ const PaymentsListElement = ({ paymentDetails, approvePayment, userId }) => (
         Payment:  ${paymentDetails.type}, ${paymentDetails.amount}£  
       `}
       <p>ID: {paymentDetails.requestorId}</p>
-      { paymentDetails.requestorId == userId 
+      { paymentDetails.requestorId === userId 
       ? <p> Pending</p> 
       : (
         <Button

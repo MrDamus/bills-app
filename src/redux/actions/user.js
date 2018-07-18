@@ -1,5 +1,3 @@
-import GroupService from "../services/groupService";
-import { db } from '../../firebase';
 
 export function setUser(userId) {
   return function(dispatch, getState) {

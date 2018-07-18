@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PaymentsListElement from './paymentsListElement'
 import { connect } from 'react-redux';
 
-const List = ({ userPayments, payment }) => (
+const List = ({ userPayments }) => (
   <div className="paymentsList" style={{ display: "flex", flexDirection: "column" }}>
     <h3 style={{ alignSelf: 'center' }}>Payments History</h3>
     <ul style={{ display: "flex", flexDirection: "column" }}>

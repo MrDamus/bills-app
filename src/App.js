@@ -10,7 +10,6 @@ import LandingPage from './pages/landing';
 import GroupCreated from './pages/groupCreated';
 import PendingPayments from './pages/pendingPayments';
 import NotFound from './components/notFound'
-import { db } from './firebase'
 import AppHeader from './components/appHeader';
 
 class App extends Component {

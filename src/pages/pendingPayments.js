@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormControl, ControlLabel, Button } from 'react-bootstrap';
+import { ControlLabel, Button } from 'react-bootstrap';
 import List from '../components/list'
 
 const pendingPayments = ({ history, data }) => (
@@ -19,6 +19,8 @@ const pendingPayments = ({ history, data }) => (
 );
 
 pendingPayments.propTypes = {
+  data: PropTypes.object,
+  history: PropTypes.object.isRequired,
 };
 
 export default pendingPayments;

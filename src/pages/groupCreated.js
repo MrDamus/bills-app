@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import GroupActions from '../redux/actions/group';
-
-import { FormControl, ControlLabel, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 const groupCreated = ({ referenceCode, history }) => (
   <div>
@@ -34,6 +32,7 @@ const mapDispatchToProps = (dispatch, { history }) => {
 
 groupCreated.propTypes = {
   history: PropTypes.object.isRequired,
+  referenceCode: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(groupCreated);
