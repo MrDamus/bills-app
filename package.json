@@ -5,7 +5,7 @@
   "dependencies": {
     "ajv": "^6.5.2",
     "firebase": "^5.2.0",
-    "moment": "^2.22.2",
+    "moment": "^2.29.4",
     "moment-range": "^4.0.1",
     "punycode": "^2.1.1",
     "react": "^16.4.1",
